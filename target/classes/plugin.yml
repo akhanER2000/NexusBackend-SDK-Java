@@ -1,0 +1,14 @@
+name: PraxCore
+version: 1.0.0
+main: com.prax.core.PraxCorePlugin
+api-version: '1.20'
+author: akhan
+depend: [floodgate]
+
+commands:
+  register:
+    description: Registra a un nuevo usuario en el servidor.
+    usage: "Uso incorrecto: /register <email> <contraseña> <repetir_contraseña>"
+  login:
+    description: Inicia sesión en el servidor.
+    usage: "/login <contraseña>"
