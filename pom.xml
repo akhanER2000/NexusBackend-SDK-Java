@@ -5,9 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.prax.core</groupId>
-    <artifactId>PraxCore</artifactId>
-    <version>1.0.0</version>
-    <packaging>jar</packaging>
+    <artifactId>PraxCore-Parent</artifactId> <version>1.0.0</version>
+
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>praxcore-paper</module>
+        <module>praxcore-velocity</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -20,81 +25,9 @@
             <id>papermc-repo</id>
             <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
-
-        <repository>
-            <id>central</id>
-            <url>https://repo.maven.apache.org/maven2</url>
-        </repository>
-
         <repository>
             <id>opencollab-repo</id>
             <url>https://repo.opencollab.dev/main/</url>
         </repository>
-
     </repositories>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.tesseractsoftwares</groupId>
-            <artifactId>NexusBackend-SDK-Java</artifactId>
-            <version>1.0.1</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>io.papermc.paper</groupId>
-            <artifactId>paper-api</artifactId>
-            <version>1.20.1-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mindrot</groupId>
-            <artifactId>jbcrypt</artifactId>
-            <version>0.4</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.geysermc.floodgate</groupId>
-            <artifactId>api</artifactId>
-            <version>2.2.2-SNAPSHOT</version> <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>4.3.1</version> <scope>compile</scope>
-        </dependency>
-
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <release>17</release>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 </project>
