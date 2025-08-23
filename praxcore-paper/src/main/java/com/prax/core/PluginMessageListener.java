@@ -1,9 +1,9 @@
+// Ubicación: praxcore-paper/src/main/java/com/prax/core/PluginMessageListener.java
 package com.prax.core;
 
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -26,9 +26,8 @@ public class PluginMessageListener implements org.bukkit.plugin.messaging.Plugin
             handleBungeeCordMessage(message);
             return;
         }
-
         if ("prax:core".equalsIgnoreCase(channel)) {
-            handlePraxCoreMessage(message);
+            handlePraxCoreMessage(player, message);
         }
     }
 
@@ -42,7 +41,7 @@ public class PluginMessageListener implements org.bukkit.plugin.messaging.Plugin
         }
     }
 
-    private void handlePraxCoreMessage(byte[] message) {
+    private void handlePraxCoreMessage(Player player, byte[] message) {
         ByteArrayDataInput in = ByteStreams.newDataInput(message);
         String subChannel = in.readUTF();
 
@@ -50,30 +49,42 @@ public class PluginMessageListener implements org.bukkit.plugin.messaging.Plugin
             UUID playerUuid = UUID.fromString(in.readUTF());
             boolean isValid = in.readBoolean();
 
-            Player targetPlayer = Bukkit.getPlayer(playerUuid);
-            if (targetPlayer == null) return;
-
-            if (isValid) {
-                plugin.setAuthenticated(playerUuid, true);
-                plugin.setLoginTime(playerUuid);
-
-                // --- LÍNEA CORREGIDA ---
-                // Ahora usamos el serverType que leemos desde el config.yml
-                targetPlayer.sendMessage("§a¡Sesión validada! Bienvenido a " + plugin.getServerType());
-            } else {
-                plugin.setAuthenticated(playerUuid, false);
-                if (plugin.isLobbyServer()) {
-                    if (plugin.getDataManager().isPlayerRegistered(playerUuid)) {
-                        targetPlayer.sendMessage("§a¡Bienvenido! Por favor, inicia sesión con /login <contraseña>");
-                    } else {
-                        targetPlayer.sendMessage("§e¡Bienvenido! Por favor, regístrate con /register <email> <contraseña> <contraseña>");
-                    }
-                    Location spawnPoint = new Location(targetPlayer.getWorld(), 42, 31, -35, 0, 0);
-                    plugin.getServer().getScheduler().runTaskLater(plugin, () -> targetPlayer.teleport(spawnPoint), 1L);
-                } else {
-                    targetPlayer.kickPlayer("§cTu sesión no es válida. Por favor, vuelve a conectarte.");
+            // --- INICIO DE LA CORRECCIÓN DEFINITIVA ---
+            // Usamos Bukkit.getScheduler().runTask() para asegurar que toda la lógica que modifica
+            // el estado del jugador se ejecute en el hilo principal del servidor.
+            // Esto previene condiciones de carrera y garantiza la consistencia del estado.
+            Bukkit.getScheduler().runTask(plugin, () -> {
+                Player targetPlayer = Bukkit.getPlayer(playerUuid);
+                if (targetPlayer == null || !targetPlayer.isOnline()) {
+                    plugin.getLogger().warning("Respuesta de validación recibida para un jugador que ya no está online: " + playerUuid);
+                    return;
                 }
-            }
+
+                plugin.getLogger().info("[DEBUG] [" + plugin.getServerType() + "]: Respuesta de validación para " + targetPlayer.getName() + ": " + (isValid ? "VALIDA" : "INVALIDA"));
+                plugin.setPendingValidation(playerUuid, false);
+
+                if (isValid) {
+                    // Si la sesión es válida, se establece su estado como autenticado.
+                    // Al ejecutarse en el hilo principal, este cambio es inmediatamente visible
+                    // para el PlayerMoveEvent, descongelando al jugador.
+                    plugin.setAuthenticated(playerUuid, true);
+                    plugin.setLoginTime(playerUuid);
+                    targetPlayer.sendMessage("§a¡Sesión restaurada! Bienvenido de vuelta.");
+                } else {
+                    // Si la sesión no es válida, la lógica anterior era correcta.
+                    plugin.setAuthenticated(playerUuid, false);
+                    if (plugin.isLobbyServer()) {
+                        if (plugin.getDataManager().isPlayerRegistered(playerUuid)) {
+                            targetPlayer.sendMessage("§ePor favor, inicia sesión con /login <contraseña>");
+                        } else {
+                            targetPlayer.sendMessage("§e¡Bienvenido! Usa /register para crear una cuenta.");
+                        }
+                    } else {
+                        targetPlayer.kickPlayer("§cTu sesión no es válida. Por favor, vuelve a conectarte.");
+                    }
+                }
+            });
+            // --- FIN DE LA CORRECCIÓN DEFINITIVA ---
         }
     }
 }

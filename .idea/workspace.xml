@@ -5,42 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c80e02b8-cf33-4764-9c09-0dbb8c06b977" name="Changes" comment="SDK PROXCORE">
-      <change afterPath="$PROJECT_DIR$/praxcore-paper/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/praxcore-velocity/src/main/java/com/prax/core/velocity/PraxProxyPlugin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/praxcore-velocity/src/main/java/com/prax/core/velocity/TokenManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiPlugin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MiPlugin.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/arbol_directorios_SDK_4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/arbol_directorios_SDK_4.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prax/core/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/src/main/java/com/prax/core/DataManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prax/core/PlayerConnectionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/src/main/java/com/prax/core/PlayerConnectionListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prax/core/PlayerStatsListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/src/main/java/com/prax/core/PlayerStatsListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prax/core/PluginMessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/src/main/java/com/prax/core/PluginMessageListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prax/core/PraxCorePlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/src/main/java/com/prax/core/PraxCorePlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prax/core/SelectorGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/src/main/java/com/prax/core/guis/SelectorGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prax/core/SelectorListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/src/main/java/com/prax/core/SelectorListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prax/core/commands/LoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/src/main/java/com/prax/core/commands/LoginCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prax/core/commands/RegisterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/src/main/java/com/prax/core/commands/RegisterCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/src/main/resources/plugin.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PraxCore-1.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/prax/core/DataManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/prax/core/PlayerConnectionListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/prax/core/PlayerStatsListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/prax/core/PluginMessageListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/prax/core/PraxCorePlugin$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/prax/core/PraxCorePlugin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/prax/core/SelectorListener$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/prax/core/SelectorListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/prax/core/commands/LoginCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/prax/core/commands/RegisterCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/prax/core/guis/SelectorGUI.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/plugin.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/original-PraxCore-1.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-paper/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-paper/src/main/java/com/prax/core/PlayerConnectionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/src/main/java/com/prax/core/PlayerConnectionListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-paper/src/main/java/com/prax/core/PluginMessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/src/main/java/com/prax/core/PluginMessageListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-paper/src/main/java/com/prax/core/PraxCorePlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/src/main/java/com/prax/core/PraxCorePlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-paper/src/main/java/com/prax/core/commands/LoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/src/main/java/com/prax/core/commands/LoginCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-paper/target/PraxCore-Paper-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/target/PraxCore-Paper-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-paper/target/classes/com/prax/core/PlayerConnectionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/target/classes/com/prax/core/PlayerConnectionListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-paper/target/classes/com/prax/core/PluginMessageListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/target/classes/com/prax/core/PluginMessageListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-paper/target/classes/com/prax/core/PraxCorePlugin.class" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/target/classes/com/prax/core/PraxCorePlugin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-paper/target/classes/com/prax/core/commands/LoginCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/target/classes/com/prax/core/commands/LoginCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-paper/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-paper/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-paper/target/original-PraxCore-Paper-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-paper/target/original-PraxCore-Paper-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-velocity/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-velocity/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-velocity/src/main/java/com/prax/core/velocity/PraxProxyPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-velocity/src/main/java/com/prax/core/velocity/PraxProxyPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-velocity/src/main/java/com/prax/core/velocity/TokenManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-velocity/src/main/java/com/prax/core/velocity/TokenManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-velocity/target/PraxCore-Velocity-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-velocity/target/PraxCore-Velocity-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-velocity/target/classes/com/prax/core/velocity/PraxProxyPlugin.class" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-velocity/target/classes/com/prax/core/velocity/PraxProxyPlugin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-velocity/target/classes/com/prax/core/velocity/TokenManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-velocity/target/classes/com/prax/core/velocity/TokenManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-velocity/target/classes/velocity-plugin.json" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-velocity/target/classes/velocity-plugin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-velocity/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-velocity/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/praxcore-velocity/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/praxcore-velocity/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +68,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   },
   "keyToStringList": {

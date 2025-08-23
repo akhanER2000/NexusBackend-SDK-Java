@@ -1,3 +1,4 @@
+// Ubicación: praxcore-paper/src/main/java/com/prax/core/PraxCorePlugin.java
 package com.prax.core;
 
 import com.google.common.io.ByteArrayDataOutput;
@@ -29,26 +30,30 @@ public class PraxCorePlugin extends JavaPlugin {
         this.serverType = this.getConfig().getString("server-type", "backend");
         this.dataManager = new DataManager(this);
 
-        // Registrar Listeners
+        // CRÍTICO: Registrar canales PRIMERO
+        getLogger().info("[DEBUG] Registrando canales de Plugin Message...");
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "prax:core");
+        this.getServer().getMessenger().registerIncomingPluginChannel(this, "prax:core", new PluginMessageListener(this));
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+        this.getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", new PluginMessageListener(this));
+        getLogger().info("[DEBUG] Canales registrados correctamente");
+
+        // Después registrar eventos
         getServer().getPluginManager().registerEvents(new PlayerConnectionListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerStatsListener(this), this);
 
-        // Registrar Canales de Mensajería
-        PluginMessageListener messageListener = new PluginMessageListener(this);
-        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
-        this.getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", messageListener);
-        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "prax:core");
-        this.getServer().getMessenger().registerIncomingPluginChannel(this, "prax:core", messageListener);
-
         if (isLobbyServer()) {
-            getLogger().info("Modo Lobby detectado. Registrando comandos.");
-            this.getCommand("register").setExecutor(new RegisterCommand(this));
-            this.getCommand("login").setExecutor(new LoginCommand(this));
+            getCommand("register").setExecutor(new RegisterCommand(this));
+            getCommand("login").setExecutor(new LoginCommand(this));
             getServer().getPluginManager().registerEvents(new SelectorListener(this), this);
+            getLogger().info("Modo Lobby detectado");
+        } else {
+            getLogger().info("Modo Backend (" + serverType + ") detectado");
         }
     }
 
-    public boolean isLobbyServer() { return "lobby".equalsIgnoreCase(this.serverType); }
+    // --- MÉTODOS DE ESTADO DEL JUGADOR (Sin cambios) ---
+    public boolean isLobbyServer() { return "lobby".equalsIgnoreCase(serverType); }
     public String getServerType() { return this.serverType; }
     public boolean isAuthenticated(UUID playerUuid) { return authenticatedPlayers.contains(playerUuid); }
     public boolean isPendingValidation(UUID playerUuid) { return pendingValidationPlayers.contains(playerUuid); }
@@ -70,21 +75,48 @@ public class PraxCorePlugin extends JavaPlugin {
         }
     }
 
-    public void sendStoreTokenMessage(Player player, String token) {
-        ByteArrayDataOutput out = ByteStreams.newDataOutput();
-        out.writeUTF("StoreToken");
-        out.writeUTF(player.getUniqueId().toString());
-        out.writeUTF(token);
-        player.sendPluginMessage(this, "prax:core", out.toByteArray());
+    public void sendCreateSessionMessage(Player player) {
+        try {
+            ByteArrayDataOutput out = ByteStreams.newDataOutput();
+            out.writeUTF("CreateSession");
+            out.writeUTF(player.getUniqueId().toString());
+
+            // Verificar que el canal está registrado
+            if (!this.getServer().getMessenger().isOutgoingChannelRegistered(this, "prax:core")) {
+                getLogger().severe("[ERROR] Canal 'prax:core' no está registrado!");
+                return;
+            }
+
+            player.sendPluginMessage(this, "prax:core", out.toByteArray());
+            getLogger().info("[DEBUG] Mensaje CreateSession enviado al proxy para " + player.getName());
+
+        } catch (Exception e) {
+            getLogger().severe("[ERROR] Error enviando CreateSession: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     public void sendValidateTokenMessage(Player player) {
-        ByteArrayDataOutput out = ByteStreams.newDataOutput();
-        out.writeUTF("ValidateToken");
-        out.writeUTF(player.getUniqueId().toString());
-        player.sendPluginMessage(this, "prax:core", out.toByteArray());
+        try {
+            ByteArrayDataOutput out = ByteStreams.newDataOutput();
+            out.writeUTF("ValidateToken");
+            out.writeUTF(player.getUniqueId().toString());
+
+            if (!this.getServer().getMessenger().isOutgoingChannelRegistered(this, "prax:core")) {
+                getLogger().severe("[ERROR] Canal 'prax:core' no está registrado!");
+                return;
+            }
+
+            player.sendPluginMessage(this, "prax:core", out.toByteArray());
+            getLogger().info("[DEBUG] Mensaje ValidateToken enviado al proxy para " + player.getName());
+
+        } catch (Exception e) {
+            getLogger().severe("[ERROR] Error enviando ValidateToken: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
+    // --- MÉTODOS DE GESTIÓN DE DATOS Y TIEMPO (Sin cambios) ---
     public DataManager getDataManager() { return this.dataManager; }
     public void setLoginTime(UUID playerUuid) { playerLoginTimes.put(playerUuid, System.currentTimeMillis()); }
     public Long getLoginTime(UUID playerUuid) { return playerLoginTimes.get(playerUuid); }

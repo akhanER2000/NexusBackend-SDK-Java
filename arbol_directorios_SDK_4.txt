@@ -60,8 +60,8 @@
 |   |   |           \-- default-compile
 |   |   |               +-- createdFiles.lst
 |   |   |               \-- inputFiles.lst
-|   |   +-- original-PraxCore-Paper-1.0.0.jar
-|   |   \-- PraxCore-Paper-1.0.0.jar
+|   |   +-- original-praxcore-paper-1.0.0.jar
+|   |   \-- praxcore-paper-1.0.0.jar
 |   \-- pom.xml
 +-- praxcore-velocity
 |   +-- src
@@ -92,7 +92,8 @@
 |   |   |           \-- default-compile
 |   |   |               +-- createdFiles.lst
 |   |   |               \-- inputFiles.lst
-|   |   \-- PraxCore-Velocity-1.0.0.jar
+|   |   +-- original-praxcore-velocity-1.0.0.jar
+|   |   \-- praxcore-velocity-1.0.0.jar
 |   +-- pom.xml
 |   \-- PraxCore-Velocity.iml
 +-- arbol_directorios_SDK.txt

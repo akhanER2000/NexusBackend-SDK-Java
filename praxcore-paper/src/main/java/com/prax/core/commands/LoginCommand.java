@@ -43,13 +43,17 @@ public class LoginCommand implements CommandExecutor {
         String hashedPassword = plugin.getDataManager().getPasswordHash(player.getUniqueId());
 
         if (BCrypt.checkpw(password, hashedPassword)) {
+            // Verificar si ya está autenticado
+            if (plugin.isAuthenticated(player.getUniqueId())) {
+                player.sendMessage("§e¡Ya estás autenticado!");
+                return true;
+            }
+
             plugin.setAuthenticated(player.getUniqueId(), true);
-
-            // ¡NUEVO! Notificamos al proxy que cree la sesión del token.
-            plugin.sendStoreTokenMessage(player, "un-token-de-ejemplo-jwt");
-
+            plugin.sendCreateSessionMessage(player);
             plugin.setLoginTime(player.getUniqueId());
-            player.sendMessage("§a¡Has iniciado sesión correctamente! Bienvenido.");
+
+            player.sendMessage("§a¡Has iniciado sesión correctamente!");
 
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();

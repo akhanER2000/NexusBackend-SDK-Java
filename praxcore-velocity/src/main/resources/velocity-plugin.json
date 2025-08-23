@@ -1,0 +1,8 @@
+{
+  "id": "praxcore-velocity",
+  "name": "PraxCore Velocity",
+  "version": "1.0.0",
+  "authors": ["akhan"],
+  "dependencies": [],
+  "main": "com.prax.core.velocity.PraxProxyPlugin"
+}
